@@ -1,2 +1,9 @@
-package de.lunx.server;public interface TobbeServer {
+package de.lunx.server;
+
+import de.lunx.data.DataManager;
+
+public interface TobbeServer {
+    void start();
+    void stop();
+    DataManager dataManager();
 }
