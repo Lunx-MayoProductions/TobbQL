@@ -1,6 +1,7 @@
 package de.lunx.querying;
 
 import com.google.gson.*;
+import de.lunx.Main;
 import de.lunx.data.DataManager;
 
 import java.io.File;
@@ -104,14 +105,13 @@ public class QueryParser {
     }
 
     private JsonElement handleCreateDatabase(String name) {
-        File dir = new File("data/" + name);
-        if (dir.mkdirs()) {
-            return new JsonPrimitive("Database created: " + name);
-        }
-        return new JsonPrimitive("Failed to create or already exists: " + name);
+        File dir = new File("data/" + name + ".json");
+        manager.createTable(name);
+        return new JsonPrimitive("OK created DB: " + name);
     }
 
     private JsonElement handleCreateTable(String name) {
+        Main.manager.createTable(name);
         return new JsonPrimitive("Table created: " + name);
     }
 

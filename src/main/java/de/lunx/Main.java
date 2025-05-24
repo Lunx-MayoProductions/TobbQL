@@ -11,11 +11,12 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 public class Main {
+    public static DataManager manager;
     public static void main(String[] args) {
         try {
-            DataManager manager = DataManager.create(new File("data"));
+            manager = DataManager.create(new File("data"));
             AuthManager auth = new AuthManager(new File("auth/users.json"));
-            auth.register("admin", "password123", "admin");
+            auth.register("guest", "123", "admin");
             HttpServer.startServer(manager, auth);
         } catch (Exception e){
             Logger.getGlobal().info("Error: (Line 21, Main.java): " + e.getMessage());
