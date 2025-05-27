@@ -35,7 +35,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
-    implementation("com.sparkjava:spark-core:2.9.4")
+    implementation("io.javalin:javalin:6.6.0")
+    implementation ("org.slf4j:slf4j-api:1.7.27")
+    implementation("ch.qos.logback:logback-core:1.2.3")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 
 tasks.test {
