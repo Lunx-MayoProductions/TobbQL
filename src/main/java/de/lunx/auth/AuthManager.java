@@ -2,12 +2,14 @@ package de.lunx.auth;
 
 import com.google.gson.*;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.*;
 
+@Slf4j
 public class AuthManager {
 
     private final File authFile;
@@ -55,7 +57,8 @@ public class AuthManager {
                 ));
             });
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load auth file", e);
+            log.error("Failed to load auth file");
+            log.error(e.getMessage());
         }
     }
 
@@ -71,7 +74,8 @@ public class AuthManager {
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(authFile), StandardCharsets.UTF_8)) {
             gson.toJson(root, writer);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save auth file", e);
+            log.error("Failed to save auth file");
+            log.error(e.getMessage());
         }
     }
 
@@ -80,8 +84,10 @@ public class AuthManager {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             return Base64.getEncoder().encodeToString(digest.digest(input.getBytes(StandardCharsets.UTF_8)));
         } catch (Exception e) {
-            throw new RuntimeException("Failed to hash password", e);
+            log.error("Failed to hash password");
+            log.error(e.getMessage());
         }
+        return "";
     }
 
     public record User(String username, String hashedPassword, String role) {}

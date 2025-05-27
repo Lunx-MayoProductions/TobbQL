@@ -5,7 +5,6 @@ import de.lunx.Main;
 import de.lunx.data.DataManager;
 
 import java.io.File;
-import java.util.*;
 
 public class QueryParser {
 
@@ -111,7 +110,7 @@ public class QueryParser {
     }
 
     private JsonElement handleCreateTable(String name) {
-        Main.manager.createTable(name);
+        Main.getInstance().getManager().createTable(name);
         return new JsonPrimitive("Table created: " + name);
     }
 
