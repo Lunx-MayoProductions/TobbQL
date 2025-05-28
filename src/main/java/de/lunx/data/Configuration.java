@@ -12,7 +12,7 @@ public class Configuration {
     private int tokenExpirationTimeInterval = 1;
     private ChronoUnit tokenExpirationUnit = ChronoUnit.HOURS;
 
-    private int port = 25544;
+    private int port = 3305;
     private String hostAddress = "0.0.0.0";
 
     private boolean safeMode = true;

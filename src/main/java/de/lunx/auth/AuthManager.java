@@ -36,7 +36,6 @@ public class AuthManager {
     public User register(String username, String password) {
         if (users.contains(getUser(username))) return null;
         User newUser = new User(username, password);
-
         save();
         return newUser;
     }
@@ -122,7 +121,7 @@ public class AuthManager {
         }
     }
 
-    private String hash(String input) {
+    public String hash(String input) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             return Base64.getEncoder().encodeToString(digest.digest(input.getBytes(StandardCharsets.UTF_8)));

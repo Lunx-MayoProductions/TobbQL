@@ -2,13 +2,17 @@ package de.lunx;
 
 import de.lunx.auth.AuthManager;
 import de.lunx.auth.JWTUtil;
+import de.lunx.data.Configuration;
 import de.lunx.data.DataManager;
 import de.lunx.http.restserver.HttpServer;
+import de.lunx.setup.Setup;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.jline.terminal.TerminalBuilder;
 import org.slf4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 
 @Slf4j
 @Getter
@@ -27,7 +31,11 @@ public class Main {
 
     public static void main(String[] args) {
         instance = new Main();
-        instance.start();
+        try{
+            instance.start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -37,6 +45,10 @@ public class Main {
 
         dataManager = DataManager.create(new File("data"));
         dataManager.loadConfig();
+
+        if(dataManager.getConfiguration() == null){
+            dataManager.setConfiguration(new Configuration());
+        }
 
 
         jwt = new JWTUtil(dataManager.getConfiguration().getJwtSecret());
@@ -52,6 +64,15 @@ public class Main {
 
         log.info("Loading data...");
         dataManager.loadData();
+
+        log.info("Starting Setup...");
+        if(!Setup.setupCompleted()){
+            try {
+                Setup.setup(TerminalBuilder.terminal(), dataManager.getConfiguration());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         log.info("Starting HTTP server...");
 

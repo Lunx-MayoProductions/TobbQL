@@ -30,7 +30,7 @@ public class TQuery {
 
     public static QueryResult parse(String json) {
         JsonObject o = JsonParser.parseString(json).getAsJsonObject();
-        Type type = null;
+        Type type;
         try {
             type = Type.valueOf(o.get("type").getAsString().toUpperCase());
         } catch (IllegalArgumentException ex) {
@@ -216,8 +216,8 @@ public class TQuery {
         return null;
     }
 
+    @Getter
     public static class QueryResult {
-        @Getter
         private final QueryResultType type;
         private final int rowsChanged;
         private final List<HashMap<String, Object>> resultSet;

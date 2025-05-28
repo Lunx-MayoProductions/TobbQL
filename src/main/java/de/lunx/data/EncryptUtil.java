@@ -13,7 +13,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.NoSuchFileException;
+import java.security.MessageDigest;
+import java.util.Base64;
 
 @Slf4j
 public class EncryptUtil {
@@ -131,5 +134,16 @@ public class EncryptUtil {
         try (FileInputStream fis = new FileInputStream(filePath)) {
             return fis.readAllBytes();
         }
+    }
+
+    public static String hash(String input) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            return Base64.getEncoder().encodeToString(digest.digest(input.getBytes(StandardCharsets.UTF_8)));
+        } catch (Exception e) {
+            log.error("Failed to hash password");
+            log.error(e.getMessage());
+        }
+        return "";
     }
 }

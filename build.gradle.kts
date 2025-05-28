@@ -40,6 +40,7 @@ dependencies {
     implementation("ch.qos.logback:logback-core:1.2.3")
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation ("com.auth0:java-jwt:4.5.0")
+    implementation ("org.jline:jline:3.30.0")
 }
 
 tasks.test {

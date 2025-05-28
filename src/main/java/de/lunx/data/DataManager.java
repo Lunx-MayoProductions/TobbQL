@@ -8,6 +8,7 @@ import de.lunx.auth.User;
 import de.lunx.data.obj.TDatabase;
 import de.lunx.data.obj.TTable;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -31,6 +32,7 @@ public class DataManager {
     private final File dataBaseFolder;
 
     @Getter
+    @Setter
     private Configuration configuration = new Configuration();
 
     private final List<TDatabase> databases = new ArrayList<>();

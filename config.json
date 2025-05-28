@@ -1,1 +1,10 @@
-null
+{
+  "tokenExpirationTimeInterval": 1,
+  "tokenExpirationUnit": "HOURS",
+  "port": 3305,
+  "hostAddress": "0.0.0.0",
+  "safeMode": true,
+  "WARNING": "DON\u0027T CHANGE THESE VALUES UNLESS YOU KNOW WHAT YOU ARE DOING!!!",
+  "jwtSecret": "\u003d:sLR%m:Mr!!\u003d@uq\u003c\u003d}I7gkUAMbd\u003e6",
+  "dataSecret": ""
+}
