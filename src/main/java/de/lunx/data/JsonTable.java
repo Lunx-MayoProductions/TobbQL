@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+@Deprecated(forRemoval = true, since = "0.1.0")
 public class JsonTable {
 
     private final File file;
