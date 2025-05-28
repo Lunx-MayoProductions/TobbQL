@@ -1,8 +1,10 @@
 package de.lunx.data.obj;
 
+import de.lunx.data.JsonDate;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
 import java.util.Date;
 import java.util.UUID;
 
@@ -52,10 +54,18 @@ public class TColumn {
             case BOOLEAN -> {
                 return value instanceof Boolean;
             }
+            case CHAR -> {
+                return value instanceof String s && s.length() == 1;
+            }
+            case DATETIME, DATE, TIME -> {
+                return value instanceof JsonDate;
+            }
+            case FILE -> {
+                return value instanceof String s && new File(s).exists();
+            }
             default -> {
                 return false;
             }
-            //TODO: Add other data types
         }
     }
 
