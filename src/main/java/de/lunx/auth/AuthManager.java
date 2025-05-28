@@ -2,6 +2,7 @@ package de.lunx.auth;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import de.lunx.Main;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
@@ -28,12 +29,21 @@ public class AuthManager {
         load();
     }
 
+    public static AuthManager getInstance() {
+        return Main.getInstance().getAuthManager();
+    }
+
     public User register(String username, String password) {
         if (users.contains(getUser(username))) return null;
         User newUser = new User(username, password);
 
         save();
         return newUser;
+    }
+
+    public User register(User user) {
+        users.add(user);
+        return user;
     }
 
     public Optional<User> authenticate(String username, String password) {
@@ -56,13 +66,18 @@ public class AuthManager {
         return null;
     }
 
+    @Nullable
+    public Role getRole(String name) {
+        for (Role r : roles) if (r.getName().equals(name)) return r;
+        return null;
+    }
+
     public Collection<User> listUsers() {
         return users;
     }
 
     public void load() {
-        if (!authFile.exists()) {
-            authFile.getParentFile().mkdirs();
+        if (!authFile.getParentFile().mkdirs()) {
             save();
             return;
         }
