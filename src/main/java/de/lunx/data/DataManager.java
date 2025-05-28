@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
@@ -101,6 +102,14 @@ public class DataManager {
 
     public TDatabase createDatabase(String name) {
         TDatabase db = new TDatabase(name, StandardCharsets.UTF_8);
+        databases.add(db);
+        save(db);
+        return db;
+    }
+
+
+    public TDatabase createDatabase(String name, Charset charset) {
+        TDatabase db = new TDatabase(name, charset);
         databases.add(db);
         save(db);
         return db;
