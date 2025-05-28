@@ -30,7 +30,7 @@ public class Role {
         return this;
     }
 
-    public Role addPermission(List<Permission> permissions) {
+    public Role addPermissions(List<Permission> permissions) {
         this.permissions.addAll(permissions);
         return this;
     }
