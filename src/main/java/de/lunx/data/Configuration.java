@@ -15,6 +15,8 @@ public class Configuration {
     private int port = 25544;
     private String hostAddress = "0.0.0.0";
 
+    private boolean safeMode = true;
+
 
     private final String WARNING = "DON'T CHANGE THESE VALUES UNLESS YOU KNOW WHAT YOU ARE DOING!!!";
     private String jwtSecret = "";
