@@ -1,10 +1,9 @@
 package de.lunx.data.obj;
 
 import lombok.Getter;
-import lombok.Setter;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,6 +42,20 @@ public class TDatabase {
 
     public List<UUID> getTablesRaw() {
         return tables;
+    }
+
+    @Nullable
+    public TTable getTable(String name) {
+        for (TTable t : tableOBJs) if (t.getName().equals(name)) return t;
+        return null;
+    }
+
+    public boolean deleteTable(String name) {
+        TTable t = getTable(name);
+        if (t == null) return false;
+        tables.remove(t.getUniqueID());
+        tableOBJs.remove(t);
+        return true;
     }
 
     public boolean hasTable(String name) {
