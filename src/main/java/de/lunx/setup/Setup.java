@@ -13,7 +13,6 @@ import java.util.List;
 
 public class Setup {
     private static boolean setup = false;
-
     public static void setup(Terminal terminal, Configuration configuration, Logger log)
     {
         Completer completer = new StringsCompleter(List.of("3305"));
@@ -26,10 +25,7 @@ public class Setup {
         configuration.setHostAddress(host);
         setup = true;
     }
-
     public static boolean setupCompleted(){
         return setup;
     }
-
-
 }
