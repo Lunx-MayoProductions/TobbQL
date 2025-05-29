@@ -47,7 +47,7 @@ public class HttpServer {
                     User user = AuthManager.getInstance().getUser(decodedString.split(":")[0]);
                     if (user == null) {
                         ctx.result(QueryError.error("Invalid credentials", "User not found."));
-                        ctx.status(HttpStatus.UNAUTHORIZED); // 403
+                        ctx.status(HttpStatus.UNAUTHORIZED); // 401
                         ctx.skipRemainingHandlers();
                         return;
                     }

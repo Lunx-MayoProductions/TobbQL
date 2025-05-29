@@ -3,7 +3,6 @@ package de.lunx.auth;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import de.lunx.Main;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 
