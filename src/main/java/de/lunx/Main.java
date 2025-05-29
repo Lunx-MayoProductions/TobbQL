@@ -68,9 +68,9 @@ public class Main {
         log.info("Starting Setup...");
         if(!Setup.setupCompleted()){
             try {
-                Setup.setup(TerminalBuilder.terminal(), dataManager.getConfiguration());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                Setup.setup(TerminalBuilder.terminal(), dataManager.getConfiguration(), log);
+            } catch (IOException ignored) {
+                log.error("Failed to start setup!");
             }
         }
 

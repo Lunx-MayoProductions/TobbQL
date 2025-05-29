@@ -28,7 +28,7 @@ public class HttpServer {
     private final Gson GSON = new Gson();
 
     public void startServer() {
-        Javalin app = Javalin.create()
+        var app = Javalin.create()
                 .get("/ping", ctx -> ctx.result("pong"))
                 .post("/auth", ctx -> {
                     String authBasic = ctx.header("Authorization");
@@ -101,7 +101,7 @@ public class HttpServer {
                         case FAILED -> o.add("error", GSON.toJsonTree("Error!"));
                     }
                 })
-                .start(DataManager.getInstance().getConfiguration().getPort());
-        log.info("Started HTTP server on port 25544");
+                .start();
+        log.info("Started HTTP server on port " + DataManager.getInstance().getConfiguration().getPort());
     }
 }
